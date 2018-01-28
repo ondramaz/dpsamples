@@ -1,6 +1,7 @@
 #include "ObserverPattern.h"
 
 #include <iostream>
+#include <sstream>
 #include <vector>
 
 ObserverPattern::ObserverPattern() {
@@ -14,30 +15,40 @@ ObserverPattern::~ObserverPattern() {
 class Subject;
 
 class Event {
-public:
-	Event(int event) :
-			event(event) {
-	}
+protected:
+	std::string name;
 
-	int event;
+public:
+	std::string asString() {
+		return name;
+	}
+};
+
+class MouseEvent: public Event {
+	int code;
+public:
+	MouseEvent(int code) {
+		this->code = code;
+		std::stringstream ss;
+		ss << "Mouse event: " << code;
+		name = ss.str();
+	}
 };
 
 class Listener {
 public:
 
-	virtual void onNotify(Subject const &s, Event const &e) = 0;
+	virtual void onNotify(Subject const &s, Event *e) = 0;
 	virtual ~Listener() {
 	}
-
 };
 
 class ActionListener: public Listener {
 public:
 
-	void onNotify(Subject const &s, Event const &e) {
-		std::cout << "Action:" << e.event << std::endl;
+	void onNotify(Subject const &s, Event *e) {
+		std::cout << "Action performed:" << e->asString() << std::endl;
 	}
-
 };
 
 class Subject {
@@ -45,14 +56,16 @@ class Subject {
 public:
 
 	void addListener(Listener *l);
-	void notify(const Event &e);
+	void notify(Event *e);
 };
 
 void Subject::addListener(Listener *l) {
+	std::cout << "Listener registered\n";
 	ll.push_back(l);
 }
 
-void Subject::notify(const Event &e) {
+void Subject::notify(Event *e) {
+	std::cout << "Notify event:" << e->asString() << "\n";
 	for (auto l : ll) {
 		l->onNotify(*this, e);
 	}
@@ -61,8 +74,9 @@ void Subject::notify(const Event &e) {
 class Button: public Subject {
 
 public:
-	void press(char b) {
-		notify(b);
+	void press() {
+		MouseEvent e(10);
+		notify(&e);
 	}
 };
 
@@ -75,5 +89,5 @@ void ObserverPattern::run() {
 	b.addListener(&l);
 	b.addListener(&l2);
 
-	b.press(10);
+	b.press();
 }

@@ -16,6 +16,7 @@ class Shape
 {
     public:
     virtual void draw() = 0;
+    virtual ~Shape() {}
 
 };
 
@@ -56,7 +57,7 @@ public:
 
 void ColoredShape::draw()
 {
-    std::cout << color << " shape:";
+    std::cout << color << " ";
     shape.draw();
 }
 
@@ -64,8 +65,11 @@ void ColoredShape::draw()
 
 void DecoratorPattern::run()
 {
-    Rectangle r;
+    std:: cout << "Normal shape:";
+	Rectangle r;
     r.draw();
-    ColoredShape shape1(r,"red");
+
+    std:: cout << "Decorated shape:";
+    ColoredShape shape1(r,"Red");
     shape1.draw();
 }
