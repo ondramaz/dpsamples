@@ -10,13 +10,14 @@
 
 #include "../Pattern.h"
 
+using namespace std;
 
 class FactoryPattern: public Pattern {
 public:
 	FactoryPattern();
 	virtual ~FactoryPattern();
 	void run();
-	virtual std::string name() const { return "Factory pattern"; }
+	virtual string name() const { return "Factory pattern"; }
 };
 
 

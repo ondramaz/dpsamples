@@ -3,11 +3,9 @@
 #include <iostream>
 
 ServiceLocatorPattern::ServiceLocatorPattern() {
-	//ctor
 }
 
 ServiceLocatorPattern::~ServiceLocatorPattern() {
-	//dtor
 }
 
 class Audio {
@@ -22,15 +20,15 @@ public:
 class ConsoleAudio: public Audio {
 public:
 	virtual void playSound(int soundID) {
-		std::cout << "Play sound using console audio api...\n";
+		cout << "Play sound using console audio api...\n";
 	}
 
 	virtual void stopSound(int soundID) {
-		std::cout << "Stop sound using console audio api...\n";
+		cout << "Stop sound using console audio api...\n";
 	}
 
 	virtual void stopAllSounds() {
-		std::cout << "Stop all sounds using console audio api...\n";
+		cout << "Stop all sounds using console audio api...\n";
 	}
 };
 
@@ -57,7 +55,7 @@ public:
 
 private:
 	void log(const char* message) {
-		std::cout << "Log:" << message;
+		cout << "Log:" << message;
 	}
 
 	Audio &wrapped_;

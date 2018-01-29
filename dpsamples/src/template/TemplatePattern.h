@@ -5,6 +5,7 @@
 
 #include "../Pattern.h"
 
+using namespace std;
 
 class TemplatePattern : public Pattern
 {
@@ -12,7 +13,7 @@ class TemplatePattern : public Pattern
         TemplatePattern();
         virtual ~TemplatePattern();
         void run();
-        virtual std::string name() const { return "Template pattern"; }
+        virtual string name() const { return "Template pattern"; }
 
     protected:
 

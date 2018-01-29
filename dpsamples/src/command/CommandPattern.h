@@ -3,13 +3,15 @@
 
 #include "../Pattern.h"
 
+using namespace std;
+
 class CommandPattern : public Pattern
 {
     public:
         CommandPattern();
         virtual ~CommandPattern();
         virtual void run();
-        virtual std::string name() const { return "Command pattern"; }
+        virtual string name() const { return "Command pattern"; }
     protected:
 
     private:

@@ -5,6 +5,7 @@
 
 #include "../Pattern.h"
 
+using namespace std;
 
 class ObserverPattern : public Pattern
 {
@@ -12,7 +13,7 @@ class ObserverPattern : public Pattern
         ObserverPattern();
         virtual ~ObserverPattern();
         virtual void run();
-        virtual std::string name() const { return "Observer pattern"; }
+        virtual string name() const { return "Observer pattern"; }
 
     protected:
 

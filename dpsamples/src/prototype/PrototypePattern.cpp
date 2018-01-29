@@ -3,11 +3,9 @@
 #include <iostream>
 
 PrototypePattern::PrototypePattern() {
-	//ctor
 }
 
 PrototypePattern::~PrototypePattern() {
-	//dtor
 }
 
 class Monster {
@@ -26,7 +24,7 @@ public:
 	}
 
 	virtual Monster* clone() {
-		std::cout << "Clone ghost: " << health_ << ", " << speed_ << std::endl;
+		cout << "Clone ghost: " << health_ << ", " << speed_ << endl;
 		return new Ghost(health_, speed_);
 	}
 

@@ -7,12 +7,10 @@
 
 EventQueuePattern::EventQueuePattern()
 {
-    //ctor
 }
 
 EventQueuePattern::~EventQueuePattern()
 {
-    //dtor
 }
 
 struct ComputingData
@@ -50,7 +48,7 @@ ComputingData ComputingEngine::pending_[MAX_PENDING];
 
 void ComputingEngine::compute(const ComputingData &computingData)
 {
-  std::cout << "Compute: head: " << head_ << ", tail: " << tail_ << std::endl;
+  cout << "Compute: head: " << head_ << ", tail: " << tail_ << endl;
 
   assert((tail_ + 1) % MAX_PENDING != head_);
 
@@ -62,7 +60,7 @@ void ComputingEngine::compute(const ComputingData &computingData)
 
 void ComputingEngine::update()
 {
-  std::cout << "Update: head: " << head_ << ", tail: " << tail_ << std::endl;
+  cout << "Update: head: " << head_ << ", tail: " << tail_ << endl;
 
   // If there are no pending requests, do nothing.
   if (head_ == tail_) return;
@@ -70,7 +68,7 @@ void ComputingEngine::update()
   ComputingData data = pending_[head_];
 
   // do something with data
-  std::cout << "Data:" << data.i << std::endl;
+  cout << "Data:" << data.i << endl;
 
   head_ = (head_ + 1) % MAX_PENDING;
 }
@@ -79,19 +77,19 @@ void thread_function()
 {
     while (true) {
         ComputingEngine::update();
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        this_thread::sleep_for(chrono::milliseconds(10));
     }
 }
 
 void EventQueuePattern::run()
 {
-    std::thread t(&thread_function);   // t starts running
-    std::cout << "main thread\n";
+    thread t(&thread_function);   // t starts running
+    cout << "main thread\n";
 
      ComputingEngine::init();
 
     for (int i=0;i<1000;i++) {
-         std::this_thread::sleep_for(std::chrono::milliseconds(15));
+         this_thread::sleep_for(chrono::milliseconds(15));
         ComputingData data;
         data.i = i;
         ComputingEngine::compute(data);

@@ -10,12 +10,14 @@
 
 #include "../Pattern.h"
 
+using namespace std;
+
 class BuilderPattern : public Pattern {
 public:
 	BuilderPattern();
 	virtual ~BuilderPattern();
 	void run();
-    virtual std::string name() const { return "Builder pattern"; }
+    virtual string name() const { return "Builder pattern"; }
 };
 
 

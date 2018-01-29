@@ -5,6 +5,7 @@
 
 #include "../Pattern.h"
 
+using namespace std;
 
 class ServiceLocatorPattern : public Pattern
 {
@@ -12,7 +13,7 @@ class ServiceLocatorPattern : public Pattern
         ServiceLocatorPattern();
         virtual ~ServiceLocatorPattern();
         virtual void run();
-        virtual std::string name() const { return "Service locator pattern"; }
+        virtual string name() const { return "Service locator pattern"; }
 
     protected:
 

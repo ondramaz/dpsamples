@@ -2,27 +2,25 @@
 #include <iostream>
 
 SandboxPattern::SandboxPattern() {
-	//ctor
 }
 
 SandboxPattern::~SandboxPattern() {
-	//dtor
 }
 
 class BaseClass {
 
 protected:
 
-	void oper1() {
-		std::cout << "Oper1" << std::endl;
+	void method1() {
+		cout << "Method1" << endl;
 	}
 
-	void oper2() {
-		std::cout << "Oper2" << std::endl;
+	void method2() {
+		cout << "Method2" << endl;
 	}
 
-	void oper3() {
-		std::cout << "Oper3" << std::endl;
+	void method3() {
+		cout << "Method3" << endl;
 	}
 
 // sandbox
@@ -36,16 +34,16 @@ public:
 class DerivedClass1: public BaseClass {
 public:
 	virtual void sandbox() {
-		oper1();
-		oper2();
+		method1();
+		method2();
 	}
 };
 
 class DerivedClass2: public BaseClass {
 public:
 	virtual void sandbox() {
-		oper3();
-		oper1();
+		method3();
+		method1();
 	}
 };
 

@@ -5,6 +5,7 @@
 
 #include "../Pattern.h"
 
+using namespace std;
 
 class ProxyPattern : public Pattern
 {

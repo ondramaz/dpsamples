@@ -10,12 +10,9 @@
 #include <iostream>
 
 FactoryPattern::FactoryPattern() {
-	// TODO Auto-generated constructor stub
-
 }
 
 FactoryPattern::~FactoryPattern() {
-	// TODO Auto-generated destructor stub
 }
 
 class Room
@@ -27,18 +24,18 @@ class Room
 class MagicRoom : public Room
 {
 public:
-		MagicRoom() : Room() { std::cout << "Create magic room.\n";  }
+		MagicRoom() : Room() { cout << "Create magic room.\n";  }
 };
 
 class OrdinaryRoom : public Room
 {
 public:
-		OrdinaryRoom() : Room() { std::cout << "Create ordinary room.\n";  }
+		OrdinaryRoom() : Room() { cout << "Create ordinary room.\n";  }
 };
 
 class MazeGame
 {
-	std::list<Room> roomList;
+	list<Room> roomList;
 
 public:
 

@@ -3,6 +3,7 @@
 
 #include "../Pattern.h"
 
+using namespace std;
 
 class SandboxPattern : public Pattern
 {
@@ -10,7 +11,7 @@ class SandboxPattern : public Pattern
         SandboxPattern();
         virtual ~SandboxPattern();
         virtual void run();
-        virtual std::string name() const { return "Sandbox pattern"; }
+        virtual string name() const { return "Sandbox pattern"; }
 
     protected:
 

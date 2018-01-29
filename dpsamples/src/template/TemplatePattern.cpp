@@ -2,20 +2,18 @@
 #include <iostream>
 
 TemplatePattern::TemplatePattern() {
-	//ctor
 }
 
 TemplatePattern::~TemplatePattern() {
-	//dtor
 }
 
 class BaseClass {
 
 protected:
 
-	virtual void oper1() = 0;
-	virtual void oper2() = 0;
-	virtual void oper3() = 0;
+	virtual void method1() = 0;
+	virtual void method2() = 0;
+	virtual void method3() = 0;
 
 // template
 public:
@@ -26,34 +24,34 @@ public:
 };
 
 void BaseClass::templateMethod() {
-	oper1();
-	oper2();
-	oper3();
+	method1();
+	method2();
+	method3();
 }
 
 class DerivedClass1: public BaseClass {
 protected:
-	virtual void oper1() {
-		std::cout << "Derived class 1- oper1" << std::endl;
+	virtual void method1() {
+		cout << "Derived class 1- method1" << endl;
 	}
-	virtual void oper2() {
-		std::cout << "Derived class 1- oper2" << std::endl;
+	virtual void method2() {
+		cout << "Derived class 1- method2" << endl;
 	}
-	virtual void oper3() {
-		std::cout << "Derived class 1- oper3" << std::endl;
+	virtual void method3() {
+		cout << "Derived class 1- method3" << endl;
 	}
 };
 
 class DerivedClass2: public BaseClass {
 protected:
-	virtual void oper1() {
-		std::cout << "Derived class 2- oper1" << std::endl;
+	virtual void method1() {
+		cout << "Derived class 2- method1" << endl;
 	}
-	virtual void oper2() {
-		std::cout << "Derived class 2- oper2" << std::endl;
+	virtual void method2() {
+		cout << "Derived class 2- method2" << endl;
 	}
-	virtual void oper3() {
-		std::cout << "Derived class 2- oper3" << std::endl;
+	virtual void method3() {
+		cout << "Derived class 2- method3" << endl;
 	}
 };
 

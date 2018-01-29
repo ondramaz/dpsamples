@@ -5,21 +5,19 @@
 #include <vector>
 
 ObserverPattern::ObserverPattern() {
-	//ctor
 }
 
 ObserverPattern::~ObserverPattern() {
-	//dtor
 }
 
 class Subject;
 
 class Event {
 protected:
-	std::string name;
+	string name;
 
 public:
-	std::string asString() {
+	string asString() {
 		return name;
 	}
 };
@@ -29,7 +27,7 @@ class MouseEvent: public Event {
 public:
 	MouseEvent(int code) {
 		this->code = code;
-		std::stringstream ss;
+		stringstream ss;
 		ss << "Mouse event: " << code;
 		name = ss.str();
 	}
@@ -47,12 +45,12 @@ class ActionListener: public Listener {
 public:
 
 	void onNotify(Subject const &s, Event *e) {
-		std::cout << "Action performed:" << e->asString() << std::endl;
+		cout << "Action performed:" << e->asString() << endl;
 	}
 };
 
 class Subject {
-	std::vector<Listener*> ll;
+	vector<Listener*> ll;
 public:
 
 	void addListener(Listener *l);
@@ -60,12 +58,12 @@ public:
 };
 
 void Subject::addListener(Listener *l) {
-	std::cout << "Listener registered\n";
+	cout << "Listener registered\n";
 	ll.push_back(l);
 }
 
 void Subject::notify(Event *e) {
-	std::cout << "Notify event:" << e->asString() << "\n";
+	cout << "Notify event:" << e->asString() << "\n";
 	for (auto l : ll) {
 		l->onNotify(*this, e);
 	}

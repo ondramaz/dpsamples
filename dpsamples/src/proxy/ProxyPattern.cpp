@@ -3,11 +3,9 @@
 #include <iostream>
 
 ProxyPattern::ProxyPattern() {
-	//ctor
 }
 
 ProxyPattern::~ProxyPattern() {
-	//dtor
 }
 
 class Engine {
@@ -29,7 +27,7 @@ int RealEngine::compute(int input) {
 
 class ProxyEngine: public Engine {
 	RealEngine engine;
-	std::map<int, int> m;
+	map<int, int> m;
 
 public:
 
@@ -40,13 +38,14 @@ int ProxyEngine::compute(int input) {
 	// check if key is present
 	if (m.find(input) != m.end()) {
 		int r = m[input];
-		std::cout << "Returned hashed result:" << r << std::endl;
+		cout << "Returned hashed result:" << r << endl;
 		return r;
 	}
 
 	int r = engine.compute(input);
 	m[input] = r;
-	std::cout << "Returned computed result:" << r << std::endl;
+	cout << "Returned computed result:" << r << endl;
+	return r;
 }
 
 void ProxyPattern::run() {

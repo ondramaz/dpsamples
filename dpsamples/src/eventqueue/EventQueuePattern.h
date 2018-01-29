@@ -3,6 +3,7 @@
 
 #include "../Pattern.h"
 
+using namespace std;
 
 class EventQueuePattern : public Pattern
 {
@@ -10,7 +11,7 @@ class EventQueuePattern : public Pattern
         EventQueuePattern();
         virtual ~EventQueuePattern();
         virtual void run();
-        virtual std::string name() const { return "Event queue pattern"; }
+        virtual string name() const { return "Event queue pattern"; }
 
     protected:
 
