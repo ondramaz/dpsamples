@@ -7,6 +7,7 @@
 
 #include "AdapterPattern.h"
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
@@ -49,7 +50,6 @@ public:
 };
 
 void AdapterPattern::run() {
-	AudioPlayer *player = new PlayerAdapter(string("Ach synku"), 50);
+	std::unique_ptr<AudioPlayer> player(new PlayerAdapter(string("Ach synku"), 50));
 	player->play();
-	delete player;
 }

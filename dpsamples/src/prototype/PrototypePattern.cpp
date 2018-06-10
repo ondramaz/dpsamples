@@ -1,6 +1,7 @@
 #include "PrototypePattern.h"
 
 #include <iostream>
+#include <memory>
 
 PrototypePattern::PrototypePattern() {
 }
@@ -12,7 +13,7 @@ class Monster {
 public:
 	virtual ~Monster() {
 	}
-	virtual Monster* clone() = 0;
+	virtual std::unique_ptr<Monster> clone() = 0;
 
 	// Other stuff...
 };
@@ -23,9 +24,9 @@ public:
 			health_(health), speed_(speed) {
 	}
 
-	virtual Monster* clone() {
+	virtual std::unique_ptr<Monster> clone() {
 		cout << "Clone ghost: " << health_ << ", " << speed_ << endl;
-		return new Ghost(health_, speed_);
+		return std::unique_ptr<Monster>(new Ghost(health_, speed_));
 	}
 
 private:
@@ -39,7 +40,7 @@ public:
 			prototype_(prototype) {
 	}
 
-	Monster* spawnMonster() {
+	std::unique_ptr<Monster> spawnMonster() {
 		return prototype_->clone();
 	}
 
@@ -49,8 +50,7 @@ private:
 
 void PrototypePattern::run() {
 
-	Monster* ghostPrototype = new Ghost(15, 3);
-	Spawner* ghostSpawner = new Spawner(ghostPrototype);
+	std::unique_ptr<Monster> ghostPrototype(new Ghost(15, 3));
+	std::unique_ptr<Spawner> ghostSpawner(new Spawner(ghostPrototype.get()));
 	ghostSpawner->spawnMonster();
-
 }

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
 using namespace std;
 
 CommandPattern::CommandPattern() {
@@ -158,16 +159,14 @@ public:
 };
 
 class Game {
-	std::vector<Cmd*> cmdList;
-	std::vector<Cmd*>::iterator it;
+	std::vector<unique_ptr<Cmd>> cmdList;
+	std::vector<unique_ptr<Cmd>>::iterator it;
 public:
 	Game() {
 		it = cmdList.end();
 	}
 	void run();
 private:
-
-	void discard();
 };
 
 void Game::run() {
@@ -190,7 +189,6 @@ void Game::run() {
 				++it;
 			}
 		} else {
-			discard();
 			Cmd *newCmd = nullptr;
 			if (cmd == "m") {
 				newCmd = new MoveCommand();
@@ -204,18 +202,11 @@ void Game::run() {
 				break;
 
 			newCmd->execute(gameActor);
-			cmdList.push_back(newCmd);
+			cmdList.emplace_back(newCmd);
 			it = cmdList.end();
 		}
 		cout << gameActor;
 	}
-}
-
-void Game::discard() {
-	for (std::vector<Cmd*>::iterator it2 = it; it2 != cmdList.end(); ++it2)
-		delete *it2;
-	cmdList.erase(it, cmdList.end());
-
 }
 
 void CommandPattern::run() {
